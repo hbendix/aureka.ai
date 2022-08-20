@@ -20,7 +20,6 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }): JSX.Element => (
 		<RootLayout>
 			<EnvironmentLabel />
 			<Component {...pageProps} />
-			<Footer />
 		</RootLayout>
 	</ChakraProvider>
 );

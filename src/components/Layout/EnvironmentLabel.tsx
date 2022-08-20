@@ -1,9 +1,12 @@
 import { Tag } from '@chakra-ui/react';
 import * as React from 'react';
 
-import { Environment, getEnvironment, getVersion } from 'Utilities';
+import {
+	Environment, getEnvironment, getProject, getVersion,
+} from 'Utilities';
 
 const env = getEnvironment();
+const { name } = getProject();
 export const EnvironmentLabel: React.FC = (): JSX.Element => env !== Environment.production && (
 	<Tag
 		size="lg"
@@ -19,7 +22,7 @@ export const EnvironmentLabel: React.FC = (): JSX.Element => env !== Environment
 			borderBottomLeftRadius: 10,
 		}}
 	>
-		nextjs-chakra-base
+		{name}
 		{' '}
 		{env?.toString()}
 		{' '}

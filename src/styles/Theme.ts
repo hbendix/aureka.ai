@@ -2,6 +2,7 @@ import { extendTheme } from '@chakra-ui/react';
 
 import { colourScheme } from './ColourScheme';
 import { container } from './Container';
+import { input } from './Input';
 
 const breakpoints = ({
 	sm: '640px',
@@ -20,5 +21,6 @@ export const Theme = extendTheme({
 	colors: colourScheme,
 	components: {
 		Container: container,
+		Input: input,
 	},
 });

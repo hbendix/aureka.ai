@@ -8,8 +8,11 @@ import {
 import Link from 'next/link';
 import { FiMoon, FiSun } from 'react-icons/fi';
 
+import { getProject } from 'Utilities';
+
 export const Nav: React.FC = (): JSX.Element => {
 	const { colorMode, toggleColorMode } = useColorMode();
+	const { name } = getProject();
 	return (
 		<Box
 			bg={useColorModeValue('white', 'gray.800')}
@@ -23,7 +26,7 @@ export const Nav: React.FC = (): JSX.Element => {
 						<Link href="/" passHref>
 							<a>
 								<Heading>
-									nextjs-chakra-base
+									{name}
 								</Heading>
 							</a>
 						</Link>
