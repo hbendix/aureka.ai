@@ -2,7 +2,8 @@ import type { NextApiResponse } from 'next';
 
 import { HttpStatus } from 'API';
 import type { BaseRequest, LoginDTO } from 'DTO';
-import { BaseError, ResponseType } from 'DTO';
+import { BaseError, loginValidationSchema, ResponseType } from 'DTO';
+import { formatJoiErrorMessage } from 'Utilities';
 
 async function handler(req: BaseRequest<LoginDTO>, res: NextApiResponse<ResponseType>) {
 	if (req.method !== 'POST') {
@@ -15,11 +16,13 @@ async function handler(req: BaseRequest<LoginDTO>, res: NextApiResponse<Response
 		const delay = ms => new Promise(r => {
 			setTimeout(r, ms);
 		});
-		await delay(1000);
+		await delay(750);
+		await loginValidationSchema.validateAsync(req.body);
 		if (req.body.password !== 'password') {
 			throw new Error('Invalid password!');
 		}
 		if (req.body.email !== 'aureka@example.com') {
+			// never acknowledge an email already exists
 			throw new Error('Invalid login details!');
 		}
 		return res.status(HttpStatus.OK).send();
@@ -27,7 +30,8 @@ async function handler(req: BaseRequest<LoginDTO>, res: NextApiResponse<Response
 		return res
 			.status(HttpStatus.INTERNAL_SERVER_ERROR)
 			.json({
-				message: err.message ?? 'Incorrect login details!',
+				message: err.details
+					? formatJoiErrorMessage(err.details) : err.message ?? 'Incorrect login details!',
 				code: HttpStatus.INTERNAL_SERVER_ERROR,
 			} as BaseError);
 	}
