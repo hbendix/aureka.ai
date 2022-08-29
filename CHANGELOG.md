@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/hbendix/aureka.ai/compare/v1.0.0...v1.1.0) (2022-08-21)
+
+
+### Features
+
+* implementated Joi schema validation ([759d611](https://github.com/hbendix/aureka.ai/commit/759d611add4c908c89dcf47f068aa3db6e76532b))
+
 # 1.0.0 (2022-08-20)
 
 
