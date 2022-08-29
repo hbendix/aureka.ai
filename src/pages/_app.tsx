@@ -5,7 +5,7 @@ import NProgress from 'nprogress';
 import * as React from 'react';
 
 import {
-	EnvironmentLabel, Footer, RootLayout,
+	EnvironmentLabel, RootLayout,
 } from 'Components';
 import { Theme } from 'Styles';
 
