@@ -7,7 +7,7 @@ export type LoginDTO = {
 
 export const loginValidationSchema = Joi.object<LoginDTO>({
 	email: Joi.string()
-		.email()
+		.email({ tlds: { allow: false } })
 		.required()
 		.messages({
 			'string.base': 'Email must have a value',

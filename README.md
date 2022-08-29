@@ -1,6 +1,26 @@
+# aureka.ai programming test
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+This uses an internal template developed by myself that is not published to npm. This includes Chakra UI and other utilities. 
+
+## Usage
+
+### Chakra UI
+
+This project uses Chakra UI to build the UI. This allows for a speedy development and using their extensive theme we can still make the application feel unique.
+
+It also includes out of the box versioning and changelog generation, commit linter and code linting.
+
 ## Getting Started
+
+Firstly, install the dependencies.
+
+```bash
+npm i
+# or 
+yarn install 
+```
 
 First, run the development server:
 
@@ -12,23 +32,34 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### api
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The API layer is responsible for invoking the axios HTTP client and handling the API requests from the application.
 
-## Learn More
+### cache
 
-To learn more about Next.js, take a look at the following resources:
+The cache layer is responsible for caching the auth status of the end user.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Re-usable components get declared here to be imported within the component layer or `pages` layer.
 
-## Deploy on Vercel
+### dto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This is the data transfer object layer and a space to declare our TypeScript types and define our schema based validation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The schema `joi` library is used to validate the data transfer object and is shared between the front-end and the back-end.
+
+### pages
+
+The pages layer is responsible for rendering the pages of the application + the API routes from Next.js
+
+### styles
+
+The styles layer is responsible for defining the styles of the application using Chakra UI, we extend their default theme.
+
+### utilities
+
+The utilities layer is responsible for defining the utilities of the application, like environment variables, constants, etc.

@@ -5,13 +5,14 @@ import {
 	Input,
 	Button, Stack, useToast,
 } from '@chakra-ui/react';
+import { joiResolver } from '@hookform/resolvers/joi';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { postFactory } from 'API';
 import { setUserAuth } from 'Cache';
-import { LoginDTO } from 'DTO';
+import { LoginDTO, loginValidationSchema } from 'DTO';
 
 export const Login: React.FC = (): JSX.Element => {
 	const toast = useToast();
@@ -20,7 +21,9 @@ export const Login: React.FC = (): JSX.Element => {
 		handleSubmit,
 		register,
 		formState: { errors, isSubmitting },
-	} = useForm<LoginDTO>();
+	} = useForm<LoginDTO>({
+		resolver: joiResolver(loginValidationSchema),
+	});
 
 	const onSubmit = async (values: LoginDTO) => {
 		try {
@@ -50,13 +53,7 @@ export const Login: React.FC = (): JSX.Element => {
 					id="email"
 					type="email"
 					placeholder="example@email.com"
-					{...register('email', {
-						required: 'Email is required',
-						pattern: {
-							value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-							message: 'Invalid email address',
-						},
-					})}
+					{...register('email')}
 				/>
 				<FormErrorMessage>
 					{errors.email && errors.email.message}
@@ -67,10 +64,7 @@ export const Login: React.FC = (): JSX.Element => {
 				<Input
 					id="password"
 					type="password"
-					{...register('password', {
-						required: 'Password is required',
-						minLength: { value: 4, message: 'Minimum length should be 4' },
-					})}
+					{...register('password')}
 				/>
 				<FormErrorMessage>
 					{errors.password && errors.password.message}
