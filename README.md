@@ -12,6 +12,10 @@ This project uses Chakra UI to build the UI. This allows for a speedy developmen
 
 It also includes out of the box versioning and changelog generation, commit linter and code linting.
 
+### react-hook-form
+
+This project uses react-hook-form to create forms. This is a great functional library for creating forms and validating them. Coupled with `joi` it allows you to share your schema validation for both the front-end and the back-end.
+
 ## Getting Started
 
 Firstly, install the dependencies.
